@@ -149,9 +149,9 @@ async def main():
     ok("default numbers", settings.qty_numbers() == [1, 5, 10, 15, 20, 25, 30, 50])
     await settings.set("qty_buttons", "2,4,6")
     kb = ui.qty_kb(settings, cfg)
-    ok("admin numbers used", [b.text for b in kb.inline_keyboard[0]] == ["2", "4", "6"])
+    ok("admin numbers used", [b.text for b in kb.inline_keyboard[0]] == ["⚡ 2", "⚡ 4", "⚡ 6"])
     cfg.max_videos_per_request = 5
-    ok("numbers above the max are hidden", [b.text for b in ui.qty_kb(settings, cfg).inline_keyboard[0]] == ["2", "4"])
+    ok("numbers above the max are hidden", [b.text for b in ui.qty_kb(settings, cfg).inline_keyboard[0]] == ["⚡ 2", "⚡ 4"])
     await settings.reset("qty_buttons")
     ok("reset -> default", settings.qty_numbers()[-1] == 50)
     print("ALL FAVORITES TESTS PASSED")

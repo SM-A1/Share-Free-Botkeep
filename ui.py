@@ -629,13 +629,11 @@ def qty_kb(s: SettingsService, cfg: Config) -> Kb | None:
     if not s.flag("qty_enabled"):
         return None
     nums = [n for n in s.qty_numbers() if n <= cfg.max_videos_per_request]
-    rows = [[Btn(str(n), PRIMARY, callback_data=f"qty:{n}") for n in nums[i:i + QTY_PER_ROW]]
+    rows = [[Btn(f"⚡ {n}", callback_data=f"qty:{n}") for n in nums[i:i + QTY_PER_ROW]]
             for i in range(0, len(nums), QTY_PER_ROW)]
-    last = []
     if s.flag("qty_custom"):
-        last.append(Btn("✏️ Custom", SUCCESS, callback_data="qty:custom"))
-    last.append(Btn("🏠 Menu", callback_data="menu"))
-    rows.append(last)
+        rows.append([Btn("✏️ Custom", callback_data="qty:custom")])
+    rows.append([Btn("‹ Back", callback_data="menu")])
     return Kb(inline_keyboard=rows)
 
 
